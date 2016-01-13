@@ -77,11 +77,7 @@ sources = [os.path.join('src', fname) for fname in (
 
 extra_compile_args = []
 extra_link_args = []
-if _platform == 'darwin':
-    # if openblas was installed by homerew is present use this for lapacke.h
-    if os.path.exists('/usr/local/opt/openblas/include'):
-        extra_compile_args.append('-I/usr/local/opt/openblas/include')
-else:
+if _platform != 'darwin':
     # OSX clang does not (yet) support openmp, so don't add it to compile
     # args
     extra_compile_args.append('-fopenmp')
